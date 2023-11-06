@@ -3,6 +3,7 @@ title: "Target Language Details"
 layout: docs
 permalink: /docs/handbook/target-language-details
 oneline: "Detailed reference for each target langauge."
+version: "latest"
 preamble: >
 ---
 
@@ -404,6 +405,7 @@ States whose type are structs can similarly be initialized. This [StructAsState]
 
 ```lf-c
 target C
+version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -424,6 +426,7 @@ Parameters are similar:
 
 ```lf-c
 target C
+version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -924,6 +927,7 @@ The first reaction may or may not set the output to 21. The second reaction doub
 You can define your own data types in C and send and receive those. Consider the [StructAsType](https://github.com/lf-lang/lingua-franca/blob/master/test/C/src/StructAsType.lf) example:
 
 ```lf-c
+version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -1077,6 +1081,7 @@ A much more flexible way to communicate complex data types is to set dynamically
 Suppose the data structure of interest, its constructor, destructor, and copy_constructor are defined as follows:
 
 ```c
+version: "latest"
 preamble {=
   typedef struct int_array_t {
     int* data;
@@ -1413,6 +1418,7 @@ You can define your own data types in Python and send and receive those. Conside
 target Python {
   files: include/hello.py
 }
+version: "latest"
 preamble {=
   import hello
 =}

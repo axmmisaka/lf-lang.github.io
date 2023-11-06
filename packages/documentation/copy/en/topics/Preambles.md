@@ -3,6 +3,7 @@ title: "Preambles"
 layout: docs
 permalink: /docs/handbook/preambles
 oneline: "Defining preambles in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 
@@ -37,6 +38,7 @@ By putting the `#include` in the $preamble$, the library becomes available in al
 If you wish to have the library available in all reactors in the same file, you can provide the $preamble$ outside the reactor, as shown here:
 
 ```lf-c
+version: "latest"
 preamble {=
   #include <math.h>
 =}
@@ -89,6 +91,7 @@ _declarations_ not _definitions_ of functions or variables.
 The following code, for example will **fail to compile**:
 
 ```lf-c
+version: "latest"
 preamble {=
   int add_42(int i) {
     return i + 42;
@@ -115,6 +118,7 @@ The compiler will issue a **duplicate symbol** error because the function defini
 To correct this compile error, the file-level preamble should contain only a _declaration_, not a _definition_, as here:
 
 ```lf-c
+version: "latest"
 preamble {=
   int add_42(int i);
 =}
@@ -148,6 +152,7 @@ If you wish to share _variables_ across reactors, similar constraints apply.
 Note that sharing variables across reactors is **strongly discouraged** because it can undermine the determinacy of Lingua Franca, and you may have to implement mutual-exclusion locks to access such variables. But it is occassionaly justfiable, as in the following example:
 
 ```lf-c
+version: "latest"
 preamble {=
   extern const char shared_string[];
 =}
@@ -190,6 +195,7 @@ main reactor {
 The compiler will issue an **unknown type name** error. To correct this, just move the declaration to a file-level $preamble$:
 
 ```lf-c
+version: "latest"
 preamble {=
   typedef int foo;
 =}
@@ -330,6 +336,7 @@ Alternatively, you can define a $preamble$ outside any reactor definition. Such 
 target Python {
   files: include/hello.py
 };
+version: "latest"
 preamble {=
   import hello
 =}

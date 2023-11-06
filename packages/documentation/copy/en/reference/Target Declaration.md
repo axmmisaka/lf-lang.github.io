@@ -3,6 +3,7 @@ title: "Target Declaration"
 layout: docs
 permalink: /docs/handbook/target-declaration
 oneline: "The target declaration and its parameters in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 
@@ -514,6 +515,7 @@ target C {
 Your preamble code can then include these files, for example:
 
 ```lf-c
+version: "latest"
 preamble {=
     #include "audio_loop_mac.c"
 =}

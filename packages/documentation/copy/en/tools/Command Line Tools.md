@@ -3,6 +3,7 @@ title: Command Line Tools
 layout: docs
 permalink: /docs/handbook/command-line-tools
 oneline: "Command-line tools for Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

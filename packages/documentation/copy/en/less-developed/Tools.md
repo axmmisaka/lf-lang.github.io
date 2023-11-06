@@ -3,6 +3,7 @@ title: Tools
 layout: docs
 permalink: /docs/handbook/tools
 oneline: "LF Tools."
+version: "latest"
 preamble: >
 ---
 # IDE integration

@@ -35,6 +35,8 @@ type Props = {
     slug: string
     lang: string
     modifiedTime: string
+    deprecated_by: string
+    version: string
   }
   data: GatsbyTypes.GetDocumentBySlugQuery
   path: string
@@ -61,6 +63,12 @@ const HandbookTemplate: React.FC<Props> = (props) => {
       const indexOfHash = redirects.indexOf(document.location.hash.slice(1))
       if (indexOfHash !== -1) {
         setDeprecationURL(redirects[indexOfHash + 1])
+      }
+    }
+
+    if (deprecationURL == null) {
+      if (props.pageContext.version !== "latest") {
+        setDeprecationURL((props.path as string).replace(`${props.pageContext.version}/`, ""));
       }
     }
 
@@ -129,7 +137,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
                   </div>
                   <div>
                     <h3>{i("handb_deprecated_title")}</h3>
-                    <p>{i("handb_deprecated_subtitle")}<IntlLink className="deprecation-redirect-link" to={deprecationURL}>{i("handb_deprecated_subtitle_link")}</IntlLink></p>
+                    <p>{`${i("handb_deprecated_subtitle")}${post.frontmatter.version}. `}<IntlLink className="deprecation-redirect-link" to={deprecationURL}>{i("handb_deprecated_subtitle_link")}</IntlLink></p>
                   </div>
                 </div>
                 <div id="deprecated-action">
@@ -139,17 +147,17 @@ const HandbookTemplate: React.FC<Props> = (props) => {
             </>
           }
 
-          {showExperimental && 
-           <div id="deprecated-header">
-                <div id="deprecated-content">
-                  <div id="deprecated-icon">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7.5" stroke="black" /><path d="M8 3V9" stroke="black" /><path d="M8 11L8 13" stroke="black" /></svg>
-                  </div>
-                  <div>
-                    <h3>{i("handb_experimental_title")}</h3>
-                    <p>{i("handb_experimental_subtitle")}</p>
-                  </div>
+          {showExperimental &&
+            <div id="deprecated-header">
+              <div id="deprecated-content">
+                <div id="deprecated-icon">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="7.5" stroke="black" /><path d="M8 3V9" stroke="black" /><path d="M8 11L8 13" stroke="black" /></svg>
                 </div>
+                <div>
+                  <h3>{i("handb_experimental_title")}</h3>
+                  <p>{i("handb_experimental_subtitle")}</p>
+                </div>
+              </div>
             </div>
           }
 
@@ -157,7 +165,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
           {post.frontmatter.preamble && <div className="preamble" dangerouslySetInnerHTML={{ __html: post.frontmatter.preamble }} />}
           <article>
             <div className="whitespace raised">
-              <div className="markdown" dangerouslySetInnerHTML={{ __html: lf.postProcessHTML(post.html)}} />
+              <div className="markdown" dangerouslySetInnerHTML={{ __html: lf.postProcessHTML(post.html) }} />
             </div>
             {showSidebar &&
               <aside className="handbook-toc">
@@ -191,7 +199,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
           <Contributors lang={props.pageContext.lang} i={i} path={props.pageContext.repoPath} lastEdited={props.pageContext.modifiedTime} />
         </div>
       </section>
-    <Popup {...showPopup}/>
+      <Popup {...showPopup} />
     </Layout>
   )
 }
@@ -213,6 +221,7 @@ export const pageQuery = graphql`
         title
         oneline
         preamble
+        version
       }
     }
 

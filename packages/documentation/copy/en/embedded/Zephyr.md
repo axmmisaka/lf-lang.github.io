@@ -3,6 +3,7 @@ title: Zephyr
 layout: docs
 permalink: /docs/handbook/zephyr
 oneline: "Developing LF Programs for Zephyr RTOS."
+version: "latest"
 preamble: >
 ---
 # Overview

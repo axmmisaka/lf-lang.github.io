@@ -3,6 +3,7 @@ title: Developer Setup
 layout: docs
 permalink: /docs/handbook/developer-setup
 oneline: "Setting up Lingua Franca for developers."
+version: "latest"
 preamble: >
 ---
 

@@ -3,6 +3,7 @@ title: "Target-Supported Features"
 layout: docs
 permalink: /docs/handbook/features
 oneline: "Which features are supported by which target?"
+version: "latest"
 preamble: >
 ---
 | Target/Feature  | Banks & Multiports | Clock Synchronization | Federation |

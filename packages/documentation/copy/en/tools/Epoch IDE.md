@@ -3,6 +3,7 @@ title: Epoch IDE
 layout: docs
 permalink: /docs/handbook/epoch-ide
 oneline: "Epoch IDE for Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

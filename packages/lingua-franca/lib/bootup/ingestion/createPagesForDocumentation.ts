@@ -34,6 +34,7 @@ export const createDocumentationPages = async (
           childMarkdownRemark {
             frontmatter {
               permalink
+              version
             }
           }
         }
@@ -69,6 +70,11 @@ export const createDocumentationPages = async (
     if (!permalink)
       // prettier-ignore
       throw new Error(`Did not find a permalink for page: ${JSON.stringify(post)}`)
+
+    let version = post.childMarkdownRemark.frontmatter.version
+    if (version == null) {
+      version = "latest";
+    }
 
     const lang = langs.find(l => permalink.startsWith("/" + l + "/")) || "en"
     if (!isMultiLingual && lang !== "en") return
@@ -120,6 +126,7 @@ export const createDocumentationPages = async (
           nextID,
           lang,
           modifiedTime: post.modifiedTime,
+          version
         },
       })
     } else {

@@ -3,6 +3,7 @@ title: "Tracing"
 layout: docs
 permalink: /docs/handbook/tracing
 oneline: "Tracing (preliminary)"
+version: "latest"
 preamble: >
 ---
 

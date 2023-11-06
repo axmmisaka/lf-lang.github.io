@@ -3,6 +3,7 @@ title: Arduino
 layout: docs
 permalink: /docs/handbook/arduino
 oneline: "Developing LF Programs on Arduino."
+version: "latest"
 preamble: >
 ---
 

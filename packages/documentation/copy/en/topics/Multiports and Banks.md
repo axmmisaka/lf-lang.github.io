@@ -3,6 +3,7 @@ title: Multiports and Banks
 layout: docs
 permalink: /docs/handbook/multiports-and-banks
 oneline: "Multiports and Banks of Reactors."
+version: "latest"
 preamble: >
 ---
 
@@ -439,6 +440,7 @@ $start(BankIndex)$
 
 ```lf-c
 target C;
+version: "latest"
 preamble {=
   int table[] = {4, 3, 2, 1};
 =}
@@ -458,6 +460,7 @@ WARNING: No source file found: ../code/cpp/src/BankIndex.lf
 
 ```lf-py
 target Python;
+version: "latest"
 preamble {=
   table = [4, 3, 2, 1]
 =}

@@ -3,6 +3,7 @@ title: Regression Tests
 layout: docs
 permalink: /docs/handbook/regression-tests
 oneline: "Regression Tests for Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

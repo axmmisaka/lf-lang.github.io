@@ -3,6 +3,7 @@ title: "Website Development"
 layout: docs
 permalink: /docs/handbook/website-development
 oneline: "Development of the Lingua Franca website."
+version: "latest"
 preamble: >
 ---
 

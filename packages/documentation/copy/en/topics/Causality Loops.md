@@ -3,6 +3,7 @@ title: "Causality Loops"
 layout: docs
 permalink: /docs/handbook/causality-loops
 oneline: "Causality loops in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

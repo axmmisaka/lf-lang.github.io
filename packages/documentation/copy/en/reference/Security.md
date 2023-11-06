@@ -3,6 +3,7 @@ title: "Security"
 layout: docs
 permalink: /docs/handbook/security
 oneline: "Secure Federated Execution"
+version: "latest"
 preamble: >
 ---
 

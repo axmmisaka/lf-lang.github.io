@@ -3,6 +3,7 @@ title: "Superdense Time"
 layout: docs
 permalink: /docs/handbook/superdense-time
 oneline: "Superdense time in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

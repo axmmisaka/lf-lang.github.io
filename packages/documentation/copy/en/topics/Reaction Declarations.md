@@ -3,6 +3,7 @@ title: "Reaction Declarations"
 layout: docs
 permalink: /docs/handbook/reaction-declarations
 oneline: "Reaction declarations in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

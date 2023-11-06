@@ -3,6 +3,7 @@ title: Language Specification
 layout: docs
 permalink: /docs/handbook/language-specification
 oneline: "Language Specification for Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

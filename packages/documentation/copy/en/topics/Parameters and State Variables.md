@@ -3,6 +3,7 @@ title: "Parameters and State Variables"
 layout: docs
 permalink: /docs/handbook/parameters-and-state-variables
 oneline: "Parameters and state variables in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 

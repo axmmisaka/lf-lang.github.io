@@ -3,6 +3,7 @@ title: Timing Analysis
 layout: docs
 permalink: /docs/handbook/timing-analysis
 oneline: "Timing Analysis."
+version: "latest"
 preamble: >
 ---
 # Examples

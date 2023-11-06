@@ -3,6 +3,7 @@ title: "Distributed Execution"
 layout: docs
 permalink: /docs/handbook/distributed-execution
 oneline: "Distributed Execution (preliminary)"
+version: "latest"
 preamble: >
 ---
 

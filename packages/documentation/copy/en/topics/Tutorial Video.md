@@ -3,6 +3,7 @@ title: Tutorial Video
 layout: docs
 permalink: /docs/handbook/tutorial-video
 oneline: "Tutorial video presented by the Lingua Franca team."
+version: "latest"
 preamble: >
 ---
 

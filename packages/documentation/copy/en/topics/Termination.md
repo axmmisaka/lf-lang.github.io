@@ -3,6 +3,7 @@ title: "Termination"
 layout: docs
 permalink: /docs/handbook/termination
 oneline: "Terminating a Lingua Franca execution."
+version: "latest"
 preamble: >
 ---
 

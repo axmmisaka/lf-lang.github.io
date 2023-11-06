@@ -3,6 +3,7 @@ title: "Actions"
 layout: docs
 permalink: /docs/handbook/actions
 oneline: "Actions in Lingua Franca."
+version: "latest"
 preamble: >
 ---
 
@@ -281,6 +282,7 @@ $start(Asynchronous)$
 target C {
   keepalive: true  // Do not exit when event queue is empty.
 }
+version: "latest"
 preamble {=
   #include "platform.h" // Defines lf_sleep() and thread functions.
 =}

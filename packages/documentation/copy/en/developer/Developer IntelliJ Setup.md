@@ -3,6 +3,7 @@ title: Developer IntelliJ Setup
 layout: docs
 permalink: /docs/handbook/intellij
 oneline: "Developer IntelliJ Setup."
+version: "latest"
 preamble: >
 ---
 

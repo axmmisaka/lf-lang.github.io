@@ -3,6 +3,7 @@ title: Overview
 layout: docs
 permalink: /docs/handbook/overview
 oneline: "Overview of Lingua Franca."
+version: "latest"
 preamble: >
 ---
 
