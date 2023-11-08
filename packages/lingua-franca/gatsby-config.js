@@ -88,6 +88,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-git`,
+      options: {
+        name: `v0.5.2`,
+        remote: `https://github.com/axmmisaka/lingua-franca.git`,
+        branch: `v0.5.2`,
+        // Only import the docs folder from a codebase.
+        patterns: `docs/**`
+      }
+    },
+    {
       resolve: "gatsby-plugin-i18n",
       options: {
         langKeyDefault: "en",
