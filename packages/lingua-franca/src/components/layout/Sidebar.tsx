@@ -16,6 +16,9 @@ export type Props = {
 const closedChevron = <svg fill="none" height="14" viewBox="0 0 9 14" width="9" xmlns="http://www.w3.org/2000/svg"><path d="m1 13 6-6-6-6" stroke="#000" strokeWidth="2" /></svg>
 const openChevron = <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m1 1 6 6 6-6" stroke="#000" strokeWidth="2" /></svg>
 
+// TODO: factor this out?
+const versions = ["v0.5.2", "v0.5.3"];
+
 export const getTagFromParents = (tag: string, root: { nodeName: string, parentElement: any }) => {
   let parent = root.parentElement
   while (parent.nodeName !== tag.toUpperCase()) {
@@ -124,7 +127,7 @@ export const Sidebar = (props: Props) => {
     }
   }
 
-  const TargetLanguageLink = (props: {target: string, children: string}) => {
+  const TargetLanguageLink = (props: { target: string, children: string }) => {
     return <li
       className={getTargetLanguage() === props.target ? "highlight" : ""}
       id={`lf-target-button-${props.target}`}
@@ -135,20 +138,32 @@ export const Sidebar = (props: Props) => {
     </li>
   }
 
-  const CurrentTarget = (props: {target: string, children: string}) => {
+  const VersionSelector = (props: { version: string }) => {
+    const { version } = props;
+    return (
+      <li
+        id={`lf-target-button-${version}`}
+      >
+        <a onClick={() => console.log("")}>
+          {version}
+        </a>
+      </li>);
+  }
+
+  const CurrentTarget = (props: { target: string, children: string }) => {
     const id = `lf-current-target-${props.target}`
     const ret = <div
       id={id}
       className={`language-lf-${props.target} current-target`}
-      style={{display: "none"}}
+      style={{ display: "none" }}
     >
       {props.children}
     </div>
     return ret;
   }
 
-  function toggleOpen() {
-    const selector = document.getElementById("targetChooser");
+  function toggleElement(elementID: string) {
+    const selector = document.getElementById(elementID);
     if (selector === null) return;
     selector.className = selector.className === "open" ? "closed" : "open";
   }
@@ -156,9 +171,9 @@ export const Sidebar = (props: Props) => {
   /* Target language chooser */
   const RenderTargetChooser = () => {
     return (
-      <li id="targetChooser" className="closed" onClick={toggleOpen}>
+      <li id="targetChooser" className="closed" onClick={() => toggleElement("targetChooser")}>
         <button id="targetSelector">
-        Target<CurrentTarget target="c">&#58; C</CurrentTarget>
+          Target<CurrentTarget target="c">&#58; C</CurrentTarget>
           <CurrentTarget target="cpp">&#58; C++</CurrentTarget>
           <CurrentTarget target="py">&#58; Python</CurrentTarget>
           <CurrentTarget target="rs">&#58; Rust</CurrentTarget>
@@ -185,10 +200,34 @@ export const Sidebar = (props: Props) => {
     )
   }
 
+  const RenderVersionChooser = () => {
+    return (
+      <li id="versionChooser" className="closed" onClick={() => toggleElement("versionChooser")}>
+        <button id="targetSelector">
+          v9.9.9
+          <span className="open">
+            <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg">
+              <path d="m1 1 6 6 6-6" stroke="#000" stroke-width="2"></path>
+            </svg>
+          </span>
+          <span className="closed">
+            <svg fill="none" height="14" viewBox="0 0 9 14" width="9" xmlns="http://www.w3.org/2000/svg">
+              <path d="m1 13 6-6-6-6" stroke="#000" stroke-width="2"></path>
+            </svg>
+          </span>
+        </button>
+        <ul>
+          {versions.map((e) => (<VersionSelector version={e} />))}
+        </ul>
+      </li>
+    )
+  }
+
   return (
     <nav id="sidebar">
       <ul>
-        <RenderTargetChooser/>
+        <RenderTargetChooser />
+        <RenderVersionChooser />
         {props.navItems.map(item => <RenderItem key={item.id} item={item} openAllSectionsExceptWhatsNew={props.openAllSectionsExceptWhatsNew} selectedID={props.selectedID} />)}
       </ul>
     </nav>

@@ -30,7 +30,16 @@ nav#sidebar {
       button#targetChooser {
         // Following is too glaring:
         // background-color: rgb(247, 148, 30) !important; /* LF orange */
-        background-color: var(--lf-target-selector) !important; /* LF orange */
+        background-color: var(--lf-target-selector) !important;
+        /* LF orange */
+      }
+
+      // The target language chooser
+      button#versionChooser {
+        // Following is too glaring:
+        // background-color: rgb(247, 148, 30) !important; /* LF orange */
+        background-color: var(--lf-target-selector) !important;
+        /* LF orange */
       }
 
       // The top level navigation items
@@ -79,13 +88,15 @@ nav#sidebar {
 
     // When the dropdown for a section is showing
     &.open {
+
       // Hide the sideways SVG
-      > button > span.closed {
+      >button>span.closed {
         display: none;
       }
     }
 
     &.closed {
+
       // Hide the down SVG
       span.open {
         display: none;
@@ -97,7 +108,7 @@ nav#sidebar {
     }
   }
 
-  ul li.open > ul {
+  ul li.open>ul {
     background-color: var(--sidebar-list-background-color);
   }
 
@@ -154,33 +165,40 @@ nav#sidebar {
   }
 
   // Only set max-height and overflow rules for direct ul children to prevent scrolling in subnav uls
-  & > ul {
+  &>ul {
     @media (min-width: $screen-sm) {
       max-height: calc(100vh - 10px);
       overflow-y: auto;
       overflow-x: hidden;
     }
   }
+
   #targetChooser {
     background-color: var(--lf-target-selector);
+
     & button {
       background-color: var(--lf-target-selector);
       // svg path {
       //   stroke: rgb(247, 148, 30);
       // }
     }
+
     &.closed div.current-target {
       display: inline-block;
     }
+
     &.open div.current-target {
       display: none;
     }
+
     & li.highlight a {
       border-color: var(--sidebar-target-selector-highlight-color);
       color: var(--sidebar-target-selector-highlight-color);
     }
+
     & ul {
       background-color: var(--lf-target-selector-button);
+
       & li {
         border-top: 1px solid;
         border-color: var(--lf-target-selector-border-color);
@@ -191,6 +209,7 @@ nav#sidebar {
 }
 
 @media (max-width: $screen-sm) {
+
   // This is a button which will scroll off and on with the nav
   button#small-device-button-sidebar {
     display: flex;
@@ -253,8 +272,8 @@ nav#sidebar {
       margin-left: 0px;
     }
 
-    & > ul > li,
-    & > ul > li > button {
+    &>ul>li,
+    &>ul>li>button {
       font-size: 1.3rem;
     }
   }
