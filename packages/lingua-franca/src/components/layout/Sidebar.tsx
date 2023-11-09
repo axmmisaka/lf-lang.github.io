@@ -73,7 +73,7 @@ export const Sidebar = (props: {
     })
   }, [])
 
-  const RenderItem = (props: { item: SidebarNavItem, selectedID: string, openAllSectionsExceptWhatsNew?: boolean }) => {
+  const RenderItem = (props: { item: SidebarNavItem, selectedID: string, version?: string, openAllSectionsExceptWhatsNew?: boolean }) => {
     const item = props.item
     if (!item.items) {
       // Is it the leaf in the nav?
@@ -84,7 +84,7 @@ export const Sidebar = (props: {
         aria.className = "highlight"
       }
 
-      const href = item.permalink!
+      const href = props.version != null ? item.permalink!.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${props.version === "latest" ? "" : `${props.version}/`}`) : item.permalink!;
       return <li key={item.id} {...aria}>
         <Link to={href} onKeyDown={onAnchorKeyDown}>{item.title}</Link>
       </li>
@@ -122,7 +122,7 @@ export const Sidebar = (props: {
             <span key="closed" className="closed">{closedChevron}</span>
           </button>
           <ul>
-            {item.items.map(item => <RenderItem key={item.id} item={item} openAllSectionsExceptWhatsNew={props.openAllSectionsExceptWhatsNew} selectedID={props.selectedID} />)}
+            {item.items.map(item => <RenderItem key={item.id} item={item} openAllSectionsExceptWhatsNew={props.openAllSectionsExceptWhatsNew} version={props.version} selectedID={props.selectedID} />)}
           </ul>
         </li>
       )
@@ -230,7 +230,7 @@ export const Sidebar = (props: {
       <ul>
         <RenderTargetChooser />
         <RenderVersionChooser />
-        {props.navItems.map(item => <RenderItem key={item.id} item={item} openAllSectionsExceptWhatsNew={props.openAllSectionsExceptWhatsNew} selectedID={props.selectedID} />)}
+        {props.navItems.map(item => <RenderItem key={item.id} item={item} openAllSectionsExceptWhatsNew={props.openAllSectionsExceptWhatsNew} version={props.selectedVersion} selectedID={props.selectedID} />)}
       </ul>
     </nav>
   )
