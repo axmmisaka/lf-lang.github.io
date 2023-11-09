@@ -112,7 +112,9 @@ export const createDocumentationPages = async (
     const repoPath = post.absolutePath.replace(repoRoot, "")
 
     if (post.childMarkdownRemark) {
-      const path = post.childMarkdownRemark.frontmatter.permalink
+      const original_path = post.childMarkdownRemark.frontmatter.permalink;
+      const path = original_path;
+      console.log(path);
       addPathToSite(path)
 
       createPage({

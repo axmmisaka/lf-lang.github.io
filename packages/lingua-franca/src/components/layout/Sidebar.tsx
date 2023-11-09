@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useEffect } from "react"
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 
 import "./Sidebar.scss"
 import { onAnchorKeyDown, onButtonKeydown } from "./Sidebar-keyboard"
@@ -8,16 +8,12 @@ import { setInitialTargetLanguage } from "../../lib/setInitialTargetLanguage"
 import { getTargetLanguage, setTargetLanguage } from "../../lib/setTargetLanguage"
 import { globalHistory } from '@reach/router'
 
-export type Props = {
-  navItems: SidebarNavItem[]
-  selectedID: string
-  openAllSectionsExceptWhatsNew?: true
-}
+
 const closedChevron = <svg fill="none" height="14" viewBox="0 0 9 14" width="9" xmlns="http://www.w3.org/2000/svg"><path d="m1 13 6-6-6-6" stroke="#000" strokeWidth="2" /></svg>
 const openChevron = <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m1 1 6 6 6-6" stroke="#000" strokeWidth="2" /></svg>
 
 // TODO: factor this out?
-const versions = ["v0.5.2", "v0.5.3"];
+const versions = ["0.5.2", "latest"];
 
 export const getTagFromParents = (tag: string, root: { nodeName: string, parentElement: any }) => {
   let parent = root.parentElement
@@ -60,7 +56,13 @@ export const SidebarToggleButton = () => {
   )
 }
 
-export const Sidebar = (props: Props) => {
+export const Sidebar = (props: {
+  navItems: SidebarNavItem[],
+  selectedID: string,
+  openAllSectionsExceptWhatsNew?: true,
+  selectedVersion: string,
+  currentPath: string,
+}) => {
   useEffect(() => {
     // Keep all of the sidebar open at launch, then use JS to close the ones after
     // because otherwise you can't jump between sections
@@ -138,16 +140,16 @@ export const Sidebar = (props: Props) => {
     </li>
   }
 
-  const VersionSelector = (props: { version: string }) => {
-    const { version } = props;
+  const VersionSelector = (props: { version: string, currentPath: string }) => {
+    const { version, currentPath } = props;
+    const href = currentPath.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${version === "latest" ? "" : `${version}/`}`);
+    console.log(version, href, currentPath);
     return (
       <li
         id={`lf-target-button-${version}`}
       >
-        <a onClick={() => console.log("")}>
-          {version}
-        </a>
-      </li>);
+        <Link to={href}>{version}</Link>
+      </li >);
   }
 
   const CurrentTarget = (props: { target: string, children: string }) => {
@@ -204,7 +206,7 @@ export const Sidebar = (props: Props) => {
     return (
       <li id="versionChooser" className="closed" onClick={() => toggleElement("versionChooser")}>
         <button id="targetSelector">
-          v9.9.9
+          {props.selectedVersion}
           <span className="open">
             <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg">
               <path d="m1 1 6 6 6-6" stroke="#000" stroke-width="2"></path>
@@ -217,7 +219,7 @@ export const Sidebar = (props: Props) => {
           </span>
         </button>
         <ul>
-          {versions.map((e) => (<VersionSelector version={e} />))}
+          {versions.map((e) => (<VersionSelector version={e} currentPath={props.currentPath} />))}
         </ul>
       </li>
     )

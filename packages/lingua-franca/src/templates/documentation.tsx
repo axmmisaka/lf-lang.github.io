@@ -123,7 +123,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
         ` }} />
         </noscript>
 
-        <Sidebar navItems={navigation} selectedID={selectedID} />
+        <Sidebar navItems={navigation} selectedID={selectedID} selectedVersion={props.pageContext.version} currentPath={props.path}/>
         <div id="handbook-content" role="article">
           {deprecationURL &&
             <>
