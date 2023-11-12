@@ -3,7 +3,6 @@ title: "Reactions"
 layout: docs
 permalink: /docs/handbook/reactions
 oneline: "Reactions in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

@@ -3,7 +3,6 @@ title: "Reactors on Patmos"
 layout: docs
 permalink: /docs/handbook/reactors-on-patmos
 oneline: "Reactors on Patmos (preliminary)"
-version: "latest"
 preamble: >
 ---
 

@@ -3,7 +3,6 @@ title: "Composing Reactors"
 layout: docs
 permalink: /docs/handbook/composing-reactors
 oneline: "Composing reactors in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

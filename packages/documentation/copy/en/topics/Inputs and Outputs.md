@@ -3,7 +3,6 @@ title: "Inputs and Outputs"
 layout: docs
 permalink: /docs/handbook/inputs-and-outputs
 oneline: "Inputs, outputs, and reactions in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

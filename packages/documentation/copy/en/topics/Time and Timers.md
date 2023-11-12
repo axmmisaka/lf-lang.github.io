@@ -3,7 +3,6 @@ title: "Time and Timers"
 layout: docs
 permalink: /docs/handbook/time-and-timers
 oneline: "Time and timers in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

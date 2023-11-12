@@ -3,7 +3,6 @@ title: "Target Language Details"
 layout: docs
 permalink: /docs/handbook/target-language-details
 oneline: "Detailed reference for each target langauge."
-version: "latest"
 preamble: >
 ---
 
@@ -405,7 +404,6 @@ States whose type are structs can similarly be initialized. This [StructAsState]
 
 ```lf-c
 target C
-version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -426,7 +424,6 @@ Parameters are similar:
 
 ```lf-c
 target C
-version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -927,7 +924,6 @@ The first reaction may or may not set the output to 21. The second reaction doub
 You can define your own data types in C and send and receive those. Consider the [StructAsType](https://github.com/lf-lang/lingua-franca/blob/master/test/C/src/StructAsType.lf) example:
 
 ```lf-c
-version: "latest"
 preamble {=
   typedef struct hello_t {
     char* name;
@@ -1081,7 +1077,6 @@ A much more flexible way to communicate complex data types is to set dynamically
 Suppose the data structure of interest, its constructor, destructor, and copy_constructor are defined as follows:
 
 ```c
-version: "latest"
 preamble {=
   typedef struct int_array_t {
     int* data;
@@ -1418,7 +1413,6 @@ You can define your own data types in Python and send and receive those. Conside
 target Python {
   files: include/hello.py
 }
-version: "latest"
 preamble {=
   import hello
 =}
@@ -1595,11 +1589,11 @@ Inputs and outputs in the Rust target are accessed using the `set` and `get` met
 
 In the C target, the value of a time instant or interval is an integer specifying a number of nanoseconds. An instant is the number of nanoseconds that have elapsed since January 1, 1970. An interval is the difference between two instants. When an LF program starts executing, logical time is (normally) set to the instant provided by the operating system. (On some embedded platforms without real-time clocks, it will be set instead to zero.)
 
-Time in the C target is a `int64_t`, which is a 64-bit signed number. Since a 64-bit number has a limited range, this measure of time instants will overflow in approximately the year 2262. For better code clarity, two types are defined in [tag.h](https://github.com/lf-lang/reactor-c/blob/main/core/tag.h), `instant_t` and `interval_t`, which you can use for time instants and intervals respectively. These are both equivalent to `int64_t`, but using those types will insulate your code against changes and platform-specific customizations.
+Time in the C target is a `int64_t`, which is a 64-bit signed number. Since a 64-bit number has a limited range, this measure of time instants will overflow in approximately the year 2262. For better code clarity, two types are defined in [tag.h](https://github.com/lf-lang/reactor-c/blob/main/include/core/tag.h), `instant_t` and `interval_t`, which you can use for time instants and intervals respectively. These are both equivalent to `int64_t`, but using those types will insulate your code against changes and platform-specific customizations.
 
 Lingua Franca uses a superdense model of time. A reaction is invoked at a logical **tag**, a struct consisting of a `time` value (an `instant_t`, which is a `int64_t`) and a `microstep` value (a `microstep_t`, which is an `uint32_t`). The tag is guaranteed to not increase during the execution of a reaction. Outputs produced by a reaction have the same tag as the inputs, actions, or timers that trigger the reaction, and hence are **logically simultaneous**.
 
-The time structs and functions for working with time are defined in [tag.h](https://github.com/lf-lang/reactor-c/blob/main/core/tag.h). The most useful functions are:
+The time structs and functions for working with time are defined in [tag.h](https://github.com/lf-lang/reactor-c/blob/main/include/core/tag.h). The most useful functions are:
 
 - `tag_t lf_tag()`: Get the current tag at which this reaction has been invoked.
 - `int lf_tag_compare(tag_t, tag_t)`: Compare two tags, returning -1, 0, or 1 for less than, equal, and greater than.
@@ -2783,7 +2777,6 @@ In particular, reactor-cpp provides the following logging interfaces:
 - `reactor::log::Error()`: for errors
 
 These utilities can be used analogues to `std::cout`. For instance:
-
 
 ```lf-cpp
 reactor::log::Info() << "Hello World! It is " << get_physical_time();

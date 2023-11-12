@@ -3,7 +3,6 @@ title: "Methods"
 layout: docs
 permalink: /docs/handbook/methods
 oneline: "Methods in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

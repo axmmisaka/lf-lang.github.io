@@ -3,7 +3,6 @@ title: "Deadlines"
 layout: docs
 permalink: /docs/handbook/deadlines
 oneline: "Deadlines in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 
@@ -94,7 +93,6 @@ $start(DeadlineTest)$
 ```lf-c
 target C
 import Deadline from "Deadline.lf"
-version: "latest"
 preamble {=
   #include "platform.h"
 =}
@@ -138,7 +136,6 @@ main reactor {
 ```lf-py
 target Python;
 import Deadline from "Deadline.lf";
-version: "latest"
 preamble {= import time =}
 main reactor {
   logical action a;

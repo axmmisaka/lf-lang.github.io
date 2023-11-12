@@ -3,7 +3,6 @@ title: "Related Work"
 layout: docs
 permalink: /docs/handbook/related-work
 oneline: "Related Work"
-version: "latest"
 preamble: >
 ---
 Lingua Franca is focused more on using the best ideas than on being innovative.

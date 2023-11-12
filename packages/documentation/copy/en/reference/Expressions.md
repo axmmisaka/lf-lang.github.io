@@ -3,7 +3,6 @@ title: "Expressions"
 layout: docs
 permalink: /docs/handbook/expressions
 oneline: "Expressions in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

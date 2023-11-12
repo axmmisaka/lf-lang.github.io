@@ -3,7 +3,6 @@ title: "Running Benchmarks"
 layout: docs
 permalink: /docs/handbook/running-benchmarks
 oneline: "Running Benchmarks."
-version: "latest"
 preamble: >
 ---
 

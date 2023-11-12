@@ -3,7 +3,6 @@ title: Troubleshooting
 layout: docs
 permalink: /docs/handbook/troubleshooting
 oneline: "Troubleshooting page for Lingua Franca tools."
-version: "latest"
 preamble: >
 ---
 

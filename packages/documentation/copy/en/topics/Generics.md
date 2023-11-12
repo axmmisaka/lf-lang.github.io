@@ -3,7 +3,6 @@ title: "Generic Reactors"
 layout: docs
 permalink: /docs/handbook/generics
 oneline: "Defining generic reactors in Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

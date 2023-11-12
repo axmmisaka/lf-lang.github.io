@@ -3,7 +3,6 @@ title: "Future Proof Package/Import System"
 layout: docs
 permalink: /docs/handbook/proof-import
 oneline: "A future proof package and import system"
-version: "latest"
 preamble: >
 ---
 

@@ -3,7 +3,6 @@ title: "Generic Types, Interfaces, and Inheritance"
 layout: docs
 permalink: /docs/handbook/generic-types-interfaces-inheritance
 oneline: "Generic Types, Interfaces, and Inheritance (preliminary)"
-version: "latest"
 preamble: >
 ---
 

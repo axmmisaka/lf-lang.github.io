@@ -3,7 +3,6 @@ title: Developer Eclipse Setup
 layout: docs
 permalink: /docs/handbook/eclipse-oomph
 oneline: "Developer Eclipse setup with Oomph."
-version: "latest"
 preamble: >
 ---
 

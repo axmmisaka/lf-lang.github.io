@@ -3,7 +3,6 @@ title: Developer Setup
 layout: docs
 permalink: /docs/handbook/developer-setup
 oneline: "Setting up Lingua Franca for developers."
-version: "latest"
 preamble: >
 ---
 
@@ -19,6 +18,14 @@ Please run the following commands to clone the repository and its submodules.
 git clone git@github.com:lf-lang/lingua-franca.git
 cd lingua-franca
 git submodule update --init --recursive
+```
+
+Submodules are checked out over HTTPS by default. In case you want to commit to a submodule and use SSH instead, you can simply change the remote. For example, to change the remote of the `reactor-c` submodule, you can do this:
+
+```sh
+cd core/src/main/resources/lib/c/reactor-c
+git remote remove origin
+git remote add origin git@github.com:lf-lang/reactor-c.git
 ```
 
 ## Building the command line tools

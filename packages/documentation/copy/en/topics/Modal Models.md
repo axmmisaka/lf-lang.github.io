@@ -3,7 +3,6 @@ title: "Modal Reactors"
 layout: docs
 permalink: /docs/handbook/modal-models
 oneline: "Modal Reactors"
-version: "latest"
 preamble: >
 ---
 

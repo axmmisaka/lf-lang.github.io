@@ -3,7 +3,6 @@ title: "Containerized Execution"
 layout: docs
 permalink: /docs/handbook/containerized-execution
 oneline: "Containerized Execution using Docker"
-version: "latest"
 preamble: >
 ---
 

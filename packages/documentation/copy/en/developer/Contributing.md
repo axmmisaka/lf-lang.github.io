@@ -3,7 +3,6 @@ title: Contributing
 layout: docs
 permalink: /docs/handbook/contributing
 oneline: "Contribute to Lingua Franca."
-version: "latest"
 preamble: >
 ---
 

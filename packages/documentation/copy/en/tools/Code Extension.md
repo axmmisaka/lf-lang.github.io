@@ -3,7 +3,6 @@ title: Code Extension
 layout: docs
 permalink: /docs/handbook/code-extension
 oneline: "Visual Studio Code Extension for Lingua Franca."
-version: "latest"
 preamble: >
 ---
 
