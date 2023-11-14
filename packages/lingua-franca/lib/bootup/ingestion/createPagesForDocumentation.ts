@@ -73,7 +73,7 @@ export const createDocumentationPages = async (
 
     let version = post.childMarkdownRemark.frontmatter.version
     if (version == null) {
-      version = "latest";
+      version = "nightly";
     }
 
     const lang = langs.find(l => permalink.startsWith("/" + l + "/")) || "en"

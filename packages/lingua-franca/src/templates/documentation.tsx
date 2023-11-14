@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import { Layout } from "../components/layout"
 import { Sidebar, SidebarToggleButton } from "../components/layout/Sidebar"
 import { getDocumentationNavForLanguage } from "../lib/documentationNavigation"
-import { Intl } from "../components/Intl"
+import { Intl as ComponentIntl } from "../components/Intl"
 import * as lf from "../../../documentation/scripts/linguaFrancaUtils";
 
 // This dependency is used in gatsby-remark-autolink-headers to generate the slugs
@@ -67,7 +67,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
     }
 
     if (deprecationURL == null) {
-      if (props.pageContext.version !== "latest") {
+      if (props.pageContext.version !== "nightly") {
         setDeprecationURL((props.path as string).replace(`${props.pageContext.version}/`, ""));
       }
     }
@@ -100,6 +100,23 @@ const HandbookTemplate: React.FC<Props> = (props) => {
   const prefix = isHandbook ? "Handbook" : "Documentation"
 
   const slug = slugger()
+
+  const Section = (props: { children: any; className?: string; sKey: string }) =>
+    <div key={props.sKey} className="bottom-section-content">
+      {props.children}
+    </div>;
+
+  const reposRootURL =
+    "https://github.com/lf-lang/website-lingua-franca";
+  const repoPageURL = reposRootURL + "/tree/main" + props.path;
+
+  const d = new Date(props.pageContext.modifiedTime);
+  const dtf = new Intl.DateTimeFormat(
+    props.pageContext.lang,
+    { year: "numeric", month: "short", day: "2-digit" },
+  );
+  const lastEdited = dtf.format(d);
+
   return (
     <Layout title={`${prefix} - ${post.frontmatter.title}`} description={post.frontmatter.oneline || ""} lang={props.pageContext.lang}>
       <section id="doc-layout">
@@ -123,7 +140,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
         ` }} />
         </noscript>
 
-        <Sidebar navItems={navigation} selectedID={selectedID} selectedVersion={props.pageContext.version} currentPath={props.path}/>
+        <Sidebar navItems={navigation} selectedID={selectedID} selectedVersion={props.pageContext.version} currentPath={props.path} />
         <div id="handbook-content" role="article">
           {deprecationURL &&
             <>
@@ -182,11 +199,20 @@ const HandbookTemplate: React.FC<Props> = (props) => {
                     </ul>
                   </>
                   }
-                  <div id="like-dislike-subnav">
+
+                  {/* <div id="like-dislike-subnav">
                     <h5>{i("handb_like_dislike_title")}</h5>
                     <div>
                       <button title="Like this page" id="like-button"><LikeUnfilledSVG /> {i("handb_like_desc")}</button>
                       <button title="Dislike this page" id="dislike-button"><DislikeUnfilledSVG /> {i("handb_dislike_desc")}</button>
+                    </div>
+                  </div> */}
+                  <div id="like-dislike-subnav">
+                    <div>
+                      <a href={repoPageURL}>Edit this page</a>
+                    </div>
+                    <div>
+                      {`Last updated: ${lastEdited}`}
                     </div>
                   </div>
 
@@ -196,7 +222,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
           </article>
 
           <NextPrev next={props.data.next as any} prev={props.data.prev as any} i={i} IntlLink={IntlLink as any} />
-          <Contributors lang={props.pageContext.lang} i={i} path={props.pageContext.repoPath} lastEdited={props.pageContext.modifiedTime} />
+          {/*<Contributors lang={props.pageContext.lang} i={i} path={props.pageContext.repoPath} lastEdited={props.pageContext.modifiedTime} />*/}
         </div>
       </section>
       <Popup {...showPopup} />
@@ -204,7 +230,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
   )
 }
 
-export default (props: Props) => <Intl locale={props.pageContext.lang}><HandbookTemplate {...props} /></Intl>
+export default (props: Props) => <ComponentIntl locale={props.pageContext.lang}><HandbookTemplate {...props} /></ComponentIntl>
 
 export const pageQuery = graphql`
   query GetDocumentBySlug($slug: String!, $previousID: String, $nextID: String) {    

@@ -13,7 +13,7 @@ const closedChevron = <svg fill="none" height="14" viewBox="0 0 9 14" width="9" 
 const openChevron = <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg"><path d="m1 1 6 6 6-6" stroke="#000" strokeWidth="2" /></svg>
 
 // TODO: factor this out?
-const versions = ["0.5.2", "latest"];
+const versions = ["v0.5.2", "v0.5.3", "nightly"];
 
 export const getTagFromParents = (tag: string, root: { nodeName: string, parentElement: any }) => {
   let parent = root.parentElement
@@ -84,7 +84,7 @@ export const Sidebar = (props: {
         aria.className = "highlight"
       }
 
-      const href = props.version != null ? item.permalink!.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${props.version === "latest" ? "" : `${props.version}/`}`) : item.permalink!;
+      const href = props.version != null ? item.permalink!.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${props.version === "nightly" ? "" : `${props.version}/`}`) : item.permalink!;
       return <li key={item.id} {...aria}>
         <Link to={href} onKeyDown={onAnchorKeyDown}>{item.title}</Link>
       </li>
@@ -142,7 +142,7 @@ export const Sidebar = (props: {
 
   const VersionSelector = (props: { version: string, currentPath: string }) => {
     const { version, currentPath } = props;
-    const href = currentPath.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${version === "latest" ? "" : `${version}/`}`);
+    const href = currentPath.replace(/\/docs\/handbook(?:\/[^\/]+?)?\//, `/docs/handbook/${version === "nightly" ? "" : `${version}/`}`);
     console.log(version, href, currentPath);
     return (
       <li
@@ -206,7 +206,7 @@ export const Sidebar = (props: {
     return (
       <li id="versionChooser" className="closed" onClick={() => toggleElement("versionChooser")}>
         <button id="targetSelector">
-          {props.selectedVersion}
+          Version:  {props.selectedVersion}
           <span className="open">
             <svg fill="none" height="9" viewBox="0 0 14 9" width="14" xmlns="http://www.w3.org/2000/svg">
               <path d="m1 1 6 6 6-6" stroke="#000" stroke-width="2"></path>
