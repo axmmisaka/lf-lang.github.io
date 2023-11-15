@@ -4,6 +4,7 @@ REMOTE='https://github.com/axmmisaka/lingua-franca.git'
 BRANCH='move-docs-here' # I'm unsure if this is useful
 REPO_NAME='lingua-franca-docs'
 RESULT_DIR_NAME='docs'
+NON_LEGACY_VERSION_NAME='nightly'
 
 git clone --quiet --no-checkout --filter=blob:none --sparse ${REMOTE} -b ${BRANCH} ${REPO_NAME}
 pushd ${REPO_NAME} || exit 1
@@ -27,9 +28,9 @@ popd || exit 1
 
 for tag in "${tags_with_docs[@]}"; do
     # First, strip out the inner "docs" directory
-    mv "./${RESULT_DIR_NAME}/${tag}/docs/"* "./${RESULT_DIR_NAME}/${tag}"
+    mv "./${RESULT_DIR_NAME}/${tag}/docs/en/"* "./${RESULT_DIR_NAME}/${tag}"
     rm -r "./${RESULT_DIR_NAME}/${tag}/docs/"
-    if [ "${tag}" = "nightly" ]; then
+    if [ "${tag}" = "${NON_LEGACY_VERSION_NAME}" ]; then
         # See below; although we do not alter the permalink for nightly
         find "docs/${tag}/" -type f -name "*.md" -exec sed -i -E "2 aversion: ${tag}" {} +
     else
@@ -43,7 +44,10 @@ for tag in "${tags_with_docs[@]}"; do
     fi
 done
 
-
+# Move everything in `nightly` one dir up to make sure site could be built correctly
+if [[ -d "./${RESULT_DIR_NAME}/${NON_LEGACY_VERSION_NAME}" ]]; then
+    mv "./${RESULT_DIR_NAME}/${NON_LEGACY_VERSION_NAME}/"* "./${RESULT_DIR_NAME}"
+fi
 
 for tag in "${tags_with_docs[@]}"; do
     echo ${tag}
