@@ -10,20 +10,20 @@
 /** Lingua Franca keywords in alphabetical order. */
 const keywords = [
   "action", "after", "as", "at",
-  "const", 
+  "const",
   "deadline",
   "extends",
-  "federated", "from", 
-  "import", "initial", "input", "interleaved", 
-  "logical", 
-  "main", "method", "mode", "msec", "msecs", "mutable", "mutation", 
-  "new", 
-  "output", 
+  "federated", "from",
+  "import", "initial", "input", "interleaved",
+  "logical",
+  "main", "method", "mode", "msec", "msecs", "mutable", "mutation",
+  "new",
+  "output",
   "physical", "preamble", "private", "public",
   "reaction", "reactor", "realtime", "reset",
   "sec", "secs", "shutdown", "startup", "state",
-  "target", "timer", "time", 
-  "usec", "usecs", 
+  "target", "timer", "time",
+  "usec", "usecs",
   "widthof",
 ]
 
@@ -31,7 +31,7 @@ const keywords = [
  * Preprocessor functions that may be included markdown files.
  * These will be removed from the HTML by postProcessHTML().
  */
-const functions = [ "start", "end" ];
+const functions = ["start", "end"];
 
 /** Dictionary of features with a list of targets that support the feature. */
 const supportingTargets = {
@@ -41,8 +41,8 @@ const supportingTargets = {
 /** Text used on multiple web pages. */
 
 const textSubstitutions = {
-  "target-language" : `[C]{lf-c}[Cpp]{lf-cpp}[Python]{lf-py}[TypeScript]{lf-ts}[Rust]{lf-rs}`,
-  "page-showing-target" : `
+  "target-language": `[C]{lf-c}[Cpp]{lf-cpp}[Python]{lf-py}[TypeScript]{lf-ts}[Rust]{lf-rs}`,
+  "page-showing-target": `
 <span class="not-in-pdf">This page is showing examples in the target language [C]{lf-c}[C++]{lf-cpp}[Python]{lf-py}[TypeScript]{lf-ts}[Rust]{lf-rs}.
 You can change the target language in the left sidebar.</span>`,
 }
@@ -68,6 +68,8 @@ const textSubstitutionsMatcher = new RegExp('\\$(' + Object.keys(textSubstitutio
 /** Regular expression that matches "[ p1 ]{ p2 }", where p1 and p2 are arbitrary strings. */
 const spanMatcher = /\[([^\]]*)\]\{([^\}]*)\}/gm
 
+const handbookVersionMatcher = /href="\/docs\/handbook\//gm;
+
 /******** Functions used internally and not exported. */
 
 /**
@@ -78,16 +80,16 @@ const spanMatcher = /\[([^\]]*)\]\{([^\}]*)\}/gm
  * @param {*} p1 The substring containing the body.
  * @param {*} p2 The substring containing the class list (separated by spaces).
  */
- function spanClassifier(match, p1, p2) {
-   var classes = p2.split(' ');
-   var newClasses = [];
-   for (c of classes) {
+function spanClassifier(match, p1, p2) {
+  var classes = p2.split(' ');
+  var newClasses = [];
+  for (c of classes) {
     if (supportingTargets[c]) {
       Array.prototype.push.apply(newClasses, supportingTargets[c]);
     } else {
       newClasses.push(c);
     }
-   }
+  }
   const result = "<span class=\"" + newClasses.join(" ") + "\">" + p1 + "</span>"
   return result;
 }
@@ -106,12 +108,12 @@ function delimitedKeywordReplacer(match, p1) {
  * @param {*} match The matching string, including delimitters.
  * @param {*} p1 The name of the textSubstitutions key.
  */
- function textSubstitutionsReplacer(match, p1) {
-   if (textSubstitutions[p1]) {
+function textSubstitutionsReplacer(match, p1) {
+  if (textSubstitutions[p1]) {
     return textSubstitutions[p1];
-   } else {
-     return '<span class="web-page-error">ERROR: textSubstitutions key not found.</span>';
-   }
+  } else {
+    return '<span class="web-page-error">ERROR: textSubstitutions key not found.</span>';
+  }
 }
 
 /******** Functions exported. */
@@ -125,11 +127,14 @@ function delimitedKeywordReplacer(match, p1) {
  * @param {*} html The HTML to process.
  * @returns Possibly modified HTML.
  */
-const postProcessHTML = (html) => {
+const postProcessHTML = (html, version) => {
   var result = html.replace(textSubstitutionsMatcher, textSubstitutionsReplacer);
   result = result.replace(spanMatcher, spanClassifier);
   result = result.replace(delimitedKeywordMatcher, delimitedKeywordReplacer);
   result = result.replace(delimitedFunctionMatcher, "");
+  if (version != null && version !== "nightly") {
+    result = result.replace(handbookVersionMatcher, `href="/docs/handbook/${version}/`);
+  }
 
   return result;
 }

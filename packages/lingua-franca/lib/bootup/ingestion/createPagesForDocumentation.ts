@@ -114,7 +114,6 @@ export const createDocumentationPages = async (
     if (post.childMarkdownRemark) {
       const original_path = post.childMarkdownRemark.frontmatter.permalink;
       const path = original_path;
-      console.log(path);
       addPathToSite(path)
 
       createPage({

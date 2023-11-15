@@ -154,7 +154,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
                   </div>
                   <div>
                     <h3>{i("handb_deprecated_title")}</h3>
-                    <p>{`${i("handb_deprecated_subtitle")}${post.frontmatter.version}. `}<IntlLink className="deprecation-redirect-link" to={deprecationURL}>{i("handb_deprecated_subtitle_link")}</IntlLink></p>
+                    <p>{`${i("handb_deprecated_subtitle")}${props.pageContext.version}. `}<IntlLink className="deprecation-redirect-link" to={deprecationURL}>{i("handb_deprecated_subtitle_link")}</IntlLink></p>
                   </div>
                 </div>
                 <div id="deprecated-action">
@@ -182,7 +182,7 @@ const HandbookTemplate: React.FC<Props> = (props) => {
           {post.frontmatter.preamble && <div className="preamble" dangerouslySetInnerHTML={{ __html: post.frontmatter.preamble }} />}
           <article>
             <div className="whitespace raised">
-              <div className="markdown" dangerouslySetInnerHTML={{ __html: lf.postProcessHTML(post.html) }} />
+              <div className="markdown" dangerouslySetInnerHTML={{ __html: lf.postProcessHTML(post.html, props.pageContext.version) }} />
             </div>
             {showSidebar &&
               <aside className="handbook-toc">
